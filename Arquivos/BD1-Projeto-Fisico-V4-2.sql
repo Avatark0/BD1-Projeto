@@ -1,15 +1,11 @@
-/* BD1_Projeto_Logico_V4: */
-
-CREATE TABLE Setor (
-    Nome VARCHAR2(10 CHAR) PRIMARY KEY
-);
+/* BD1-Projeto-Logico-V4: */
 
 CREATE TABLE Andar (
     Numero_Andar INTEGER PRIMARY KEY,
     fk_Setor_Nome VARCHAR2(10 CHAR),
     fk_Nutricionista_CRN INTEGER,
     Capacidade INTEGER,
-    Leitos_Livres INTEGER
+    Leitos-Livres INTEGER
 );
 
 CREATE TABLE Paciente (
@@ -17,7 +13,7 @@ CREATE TABLE Paciente (
     fk_Pessoa_CPF INTEGER,
     fk_Medico_CRM INTEGER,
     fk_Quarto_Numero_Quarto INTEGER,
-    Numero_Leito INTEGER,
+    Numero-Leito INTEGER,
     Urgencia CHAR,
     Data_Internacao DATE,
     Data_Alta DATE,
@@ -27,7 +23,7 @@ CREATE TABLE Paciente (
 CREATE TABLE Medico (
     CRM INTEGER,
     fk_Funcionario_Codigo_Funcionario INTEGER,
-    Especializacao VARCHAR2(20 CHAR),
+    Especializacao VARCHAR2(40 CHAR),
     PRIMARY KEY (CRM, fk_Funcionario_Codigo_Funcionario)
 );
 
@@ -41,7 +37,7 @@ CREATE TABLE Enfermeiro (
 CREATE TABLE Funcionario (
     Codigo_Funcionario INTEGER,
     fk_Pessoa_CPF INTEGER,
-    Profissao VARCHAR2(20 CHAR),
+    Profissao VARCHAR2(40 CHAR),
     Turno CHAR,
     Salario FLOAT,
     PRIMARY KEY (Codigo_Funcionario, fk_Pessoa_CPF)
@@ -52,9 +48,9 @@ CREATE TABLE Pessoa (
     Nome VARCHAR2(100 CHAR),
     Telefone INTEGER,
     CEP INTEGER,
-    Cidade VARCHAR(40 CHAR),
-    Bairro VARCHAR(40 CHAR),
-    Rua VARCHAR(40 CHAR),
+    Cidade VARCHAR2(40 CHAR),
+    Bairro VARCHAR2(40 CHAR),
+    Rua VARCHAR2(40 CHAR),
     Numero INTEGER
 );
 
@@ -69,9 +65,13 @@ CREATE TABLE Quarto (
     fk_Andar_Numero_Andar INTEGER,
     fk_Enfermeiro_Coren INTEGER
 );
+
+CREATE TABLE Setor (
+    Nome VARCHAR2(10 CHAR) PRIMARY KEY
+);
  
 ALTER TABLE Andar ADD CONSTRAINT FK_Andar_2
-    FOREIGN KEY (fk_Nutricionista_CRN, fk_Nutricionista_fk_Funcionario_Codigo_Funcionario, fk_Nutricionista_fk_Funcionario_fk_Pessoa_CPF???)
+    FOREIGN KEY (fk_Nutricionista_CRN, fk_Nutricionista_fk_Funcionario_Codigo-Funcionario, fk_Nutricionista_fk_Funcionario_fk_Pessoa_CPF???)
     REFERENCES Nutricionista (CRN, fk_Funcionario_Codigo_Funcionario, ???)
     ON DELETE RESTRICT;
  
@@ -91,7 +91,7 @@ ALTER TABLE Paciente ADD CONSTRAINT FK_Paciente_3
     ON DELETE CASCADE;
  
 ALTER TABLE Paciente ADD CONSTRAINT FK_Paciente_4
-    FOREIGN KEY (fk_Medico_CRM, fk_Medico_fk_Funcionario_Codigo_Funcionario, fk_Medico_fk_Funcionario_fk_Pessoa_CPF???)
+    FOREIGN KEY (fk_Medico_CRM, fk_Medico_fk_Funcionario_Codigo-Funcionario, fk_Medico_fk_Funcionario_fk_Pessoa_CPF???)
     REFERENCES Medico (CRM, fk_Funcionario_Codigo_Funcionario, ???)
     ON DELETE CASCADE;
  
@@ -121,6 +121,6 @@ ALTER TABLE Quarto ADD CONSTRAINT FK_Quarto_2
     ON DELETE RESTRICT;
  
 ALTER TABLE Quarto ADD CONSTRAINT FK_Quarto_3
-    FOREIGN KEY (fk_Enfermeiro_Coren, fk_Enfermeiro_fk_Funcionario_Codigo_Funcionario, fk_Enfermeiro_fk_Funcionario_fk_Pessoa_CPF???)
+    FOREIGN KEY (fk_Enfermeiro_Coren, fk_Enfermeiro_fk_Funcionario_Codigo-Funcionario, fk_Enfermeiro_fk_Funcionario_fk_Pessoa_CPF???)
     REFERENCES Enfermeiro (Coren, fk_Funcionario_Codigo_Funcionario, ???)
     ON DELETE RESTRICT;
