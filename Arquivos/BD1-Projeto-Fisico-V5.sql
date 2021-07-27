@@ -71,8 +71,8 @@ CREATE TABLE setor (
 );
  
 ALTER TABLE andar ADD CONSTRAINT FK_andar_2
-    FOREIGN KEY (fk_nutricionista_crn, fk_Nutricionista_fk_Funcionario_Codigo-Funcionario, fk_Nutricionista_fk_Funcionario_fk_Pessoa_CPF???)
-    REFERENCES nutricionista (crn, fk_funcionario_codigo_funcionario, ???)
+    FOREIGN KEY (fk_nutricionista_crn)
+    REFERENCES nutricionista (crn)
     ON DELETE RESTRICT;
  
 ALTER TABLE andar ADD CONSTRAINT FK_andar_3
