@@ -1,9 +1,5 @@
 /* BD1_Projeto_Logico_V4: */
 
-CREATE TABLE Setor (
-    Nome VARCHAR2(10 CHAR) PRIMARY KEY
-);
-
 CREATE TABLE Andar (
     Numero_Andar INTEGER PRIMARY KEY,
     fk_Setor_Nome VARCHAR2(10 CHAR),
@@ -27,7 +23,7 @@ CREATE TABLE Paciente (
 CREATE TABLE Medico (
     CRM INTEGER,
     fk_Funcionario_Codigo_Funcionario INTEGER,
-    Especializacao VARCHAR2(20 CHAR),
+    Especializacao VARCHAR2(40 CHAR),
     PRIMARY KEY (CRM, fk_Funcionario_Codigo_Funcionario)
 );
 
@@ -41,7 +37,7 @@ CREATE TABLE Enfermeiro (
 CREATE TABLE Funcionario (
     Codigo_Funcionario INTEGER,
     fk_Pessoa_CPF INTEGER,
-    Profissao VARCHAR2(20 CHAR),
+    Profissao VARCHAR2(40 CHAR),
     Turno CHAR,
     Salario FLOAT,
     PRIMARY KEY (Codigo_Funcionario, fk_Pessoa_CPF)
@@ -52,9 +48,9 @@ CREATE TABLE Pessoa (
     Nome VARCHAR2(100 CHAR),
     Telefone INTEGER,
     CEP INTEGER,
-    Cidade VARCHAR(40 CHAR),
-    Bairro VARCHAR(40 CHAR),
-    Rua VARCHAR(40 CHAR),
+    Cidade VARCHAR2(40 CHAR),
+    Bairro VARCHAR2(40 CHAR),
+    Rua VARCHAR2(40 CHAR),
     Numero INTEGER
 );
 
@@ -68,6 +64,10 @@ CREATE TABLE Quarto (
     Numero_Quarto INTEGER PRIMARY KEY,
     fk_Andar_Numero_Andar INTEGER,
     fk_Enfermeiro_Coren INTEGER
+);
+
+CREATE TABLE Setor (
+    Nome VARCHAR2(10 CHAR) PRIMARY KEY
 );
  
 ALTER TABLE Andar ADD CONSTRAINT FK_Andar_2
