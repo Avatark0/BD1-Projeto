@@ -1,13 +1,11 @@
 /* Banco de Dados 1 - Projeto Final: */
 /* Hospital - Setor de Internação */
-
-CREATE TABLE setor (
-    nome VARCHAR(12) PRIMARY KEY
-);
+/*________________________________*/
+/* Tabelas e Restrições: */
  
 CREATE TABLE andar (
     numero_andar INTEGER PRIMARY KEY,
-    fk_setor_nome VARCHAR(12),
+    setor VARCHAR(12),
     fk_nutricionista_crn VARCHAR(12),
     capacidade INTEGER,
     leitos_livres INTEGER
@@ -23,7 +21,7 @@ CREATE TABLE pessoa (
     cpf VARCHAR(12) PRIMARY KEY,
     nome VARCHAR(100),
     telefone VARCHAR(12),
-    cep INTEGER,
+    cep VARCHAR(12),
     cidade VARCHAR(100),
     bairro VARCHAR(100),
     rua VARCHAR(100),
@@ -31,9 +29,10 @@ CREATE TABLE pessoa (
 );
 
 CREATE TABLE paciente (
-    codigo_paciente INTEGER PRIMARY KEY,
+    codigo_paciente SERIAL PRIMARY KEY,
     fk_pessoa_cpf VARCHAR(12) UNIQUE,
     fk_medico_crm VARCHAR(12),
+    fk_andar_numero_andar INTEGER,
     fk_quarto_numero_quarto INTEGER,
     numero_leito INTEGER,
     urgencia CHAR,
@@ -42,11 +41,11 @@ CREATE TABLE paciente (
 );
 
 CREATE TABLE funcionario (
-    codigo_funcionario INTEGER PRIMARY KEY,
+    codigo_funcionario SERIAL PRIMARY KEY,
     fk_pessoa_cpf VARCHAR(12) UNIQUE,
-    profissao VARCHAR(40),
+    profissao VARCHAR(100),
     turno CHAR,
-    salario FLOAT
+    salario DECIMAL
 );
 
 CREATE TABLE medico (
@@ -66,31 +65,31 @@ CREATE TABLE nutricionista (
     fk_funcionario_codigo_funcionario INTEGER UNIQUE
 );
 
-ALTER TABLE andar ADD CONSTRAINT FK_andar_2
+ALTER TABLE andar ADD CONSTRAINT FK_andar_1
     FOREIGN KEY (fk_nutricionista_crn)
     REFERENCES nutricionista (crn)
     ON DELETE RESTRICT;
- 
-ALTER TABLE andar ADD CONSTRAINT FK_andar_3
-    FOREIGN KEY (fk_setor_nome)
-    REFERENCES setor (nome)
-    ON DELETE RESTRICT;
 
-ALTER TABLE quarto ADD CONSTRAINT FK_quarto_2
+ALTER TABLE quarto ADD CONSTRAINT FK_quarto_1
     FOREIGN KEY (fk_andar_numero_andar)
     REFERENCES andar (numero_andar)
     ON DELETE RESTRICT;
  
-ALTER TABLE quarto ADD CONSTRAINT FK_quarto_3
+ALTER TABLE quarto ADD CONSTRAINT FK_quarto_2
     FOREIGN KEY (fk_enfermeiro_coren)
     REFERENCES enfermeiro (coren)
     ON DELETE RESTRICT;
  
-ALTER TABLE paciente ADD CONSTRAINT FK_paciente_2
+ALTER TABLE paciente ADD CONSTRAINT FK_paciente_1
     FOREIGN KEY (fk_pessoa_cpf)
     REFERENCES pessoa (cpf)
     ON DELETE CASCADE;
  
+ALTER TABLE paciente ADD CONSTRAINT FK_paciente_2
+    FOREIGN KEY (fk_andar_numero_andar)
+    REFERENCES andar (numero_andar)
+    ON DELETE CASCADE;
+
 ALTER TABLE paciente ADD CONSTRAINT FK_paciente_3
     FOREIGN KEY (fk_quarto_numero_quarto)
     REFERENCES quarto (numero_quarto)
@@ -101,22 +100,22 @@ ALTER TABLE paciente ADD CONSTRAINT FK_paciente_4
     REFERENCES medico (crm)
     ON DELETE CASCADE;
  
-ALTER TABLE funcionario ADD CONSTRAINT FK_funcionario_2
+ALTER TABLE funcionario ADD CONSTRAINT FK_funcionario_1
     FOREIGN KEY (fk_pessoa_cpf)
     REFERENCES pessoa (cpf)
     ON DELETE CASCADE;
 
-ALTER TABLE medico ADD CONSTRAINT FK_medico_2
+ALTER TABLE medico ADD CONSTRAINT FK_medico_1
     FOREIGN KEY (fk_funcionario_codigo_funcionario)
     REFERENCES funcionario (codigo_funcionario)
     ON DELETE CASCADE;
  
-ALTER TABLE enfermeiro ADD CONSTRAINT FK_enfermeiro_2
+ALTER TABLE enfermeiro ADD CONSTRAINT FK_enfermeiro_1
     FOREIGN KEY (fk_funcionario_codigo_funcionario)
     REFERENCES funcionario (codigo_funcionario)
     ON DELETE CASCADE;
  
-ALTER TABLE nutricionista ADD CONSTRAINT FK_nutricionista_2
+ALTER TABLE nutricionista ADD CONSTRAINT FK_nutricionista_1
     FOREIGN KEY (fk_funcionario_codigo_funcionario)
     REFERENCES funcionario (codigo_funcionario)
     ON DELETE CASCADE;
