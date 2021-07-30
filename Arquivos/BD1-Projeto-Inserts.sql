@@ -3,11 +3,11 @@
 /*________________________________*/
 /* Inserts: */
 
-insert into pessoa(cpf,nome,telefone,cep,cidade,bairro,rua,numero)
-values  ('11122233344','nomePaciente1','998769181','17010000','Bauru','Centro','rua Batista de Carvalho','10-20'),
-        ('22233344455','nomeMedico1','998769271','17010000','Bauru','Centro','rua Batista de Carvalho','11-21'),
-        ('33344455566','nomeEnfermeiro1','998769261','17010000','Bauru','Centro','rua Batista de Carvalho','12-22'),
-        ('44455566677','nomeNutricionista1','998769251','17010000','Bauru','Centro','rua Batista de Carvalho','13-23');
+insert into pessoa(cpf,nome,telefone,cidade,rua,numero)
+values  ('11122233344','nomePaciente1','998769181','Bauru','rua Batista de Carvalho','10-20'),
+        ('22233344455','nomeMedico1','998769271','Bauru','rua Batista de Carvalho','11-21'),
+        ('33344455566','nomeEnfermeiro1','998769261','Bauru','rua Batista de Carvalho','12-22'),
+        ('44455566677','nomeNutricionista1','998769251','Bauru','rua Batista de Carvalho','13-23');
 
 insert into funcionario(fk_pessoa_cpf,profissao,turno,salario)
 values  ('22233344455','Médico','m', 4000.00),
@@ -18,7 +18,7 @@ insert into medico(crm,fk_funcionario_codigo_funcionario,especializacao)
 values  ('12345678',1,'urologista');
 
 insert into enfermeiro(coren,fk_funcionario_codigo_funcionario,chefe)
-values  ('23456789',2,'s');
+values  ('23456789',2);
 
 insert into nutricionista(crn,fk_funcionario_codigo_funcionario)
 values  ('34567890',3);

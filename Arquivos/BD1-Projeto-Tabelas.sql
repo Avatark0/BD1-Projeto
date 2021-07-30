@@ -21,9 +21,7 @@ CREATE TABLE pessoa (
     cpf VARCHAR(12) PRIMARY KEY,
     nome VARCHAR(100),
     telefone VARCHAR(12),
-    cep VARCHAR(12),
     cidade VARCHAR(100),
-    bairro VARCHAR(100),
     rua VARCHAR(100),
     numero VARCHAR(12)
 );
@@ -36,8 +34,7 @@ CREATE TABLE paciente (
     fk_quarto_numero_quarto INTEGER,
     numero_leito INTEGER,
     urgencia CHAR,
-    data_internacao DATE,
-    data_alta DATE
+    data_internacao DATE
 );
 
 CREATE TABLE funcionario (
@@ -56,8 +53,7 @@ CREATE TABLE medico (
 
 CREATE TABLE enfermeiro (
     coren VARCHAR(12) PRIMARY KEY,
-    fk_funcionario_codigo_funcionario INTEGER UNIQUE,
-    chefe CHAR
+    fk_funcionario_codigo_funcionario INTEGER UNIQUE
 );
 
 CREATE TABLE nutricionista (
