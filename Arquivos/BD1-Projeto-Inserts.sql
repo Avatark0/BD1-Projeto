@@ -15,7 +15,9 @@ VALUES  ('11122233344','nomePaciente1','998769181','Bauru','rua Batista de Carva
         ('33344455567','nomeEnfermeiro2','998769262','Bauru','rua Batista de Carvalho','12-23'),
         ('33344455568','nomeEnfermeiro3','998769263','Bauru','rua Batista de Carvalho','12-24'),
         ('44455566677','nomeNutricionista1','998769251','Bauru','rua Batista de Carvalho','13-23'),
-        ('44455566678','nomeNutricionista2','998769252','Bauru','rua Batista de Carvalho','13-24');
+        ('44455566678','nomeNutricionista2','998769252','Bauru','rua Batista de Carvalho','13-24'),
+        ('44455566679','nomeNutricionista3','998769253','Bauru','rua Batista de Carvalho','13-25');
+        
 
 INSERT INTO funcionario(fk_pessoa_cpf,profissao,salario)
 VALUES  ('22233344455','Médico', 4000.00),
@@ -24,7 +26,8 @@ VALUES  ('22233344455','Médico', 4000.00),
         ('33344455567','Enfermeiro', 2000.00),
         ('33344455568','Enfermeiro', 2000.00),
         ('44455566677','Nutricionista', 3000.00),
-        ('44455566678','Nutricionista', 3000.00);
+        ('44455566678','Nutricionista', 3000.00),
+        ('44455566679','Nutricionista', 3000.00);
 
 INSERT INTO medico(crm,fk_funcionario_codigo_funcionario,especializacao)
 VALUES  ('12345678',1,'urologista'),
@@ -37,7 +40,8 @@ VALUES  ('23456789',3),
 
 INSERT INTO nutricionista(crn,fk_funcionario_codigo_funcionario)
 VALUES  ('34567890',6),
-        ('34567891',7);
+        ('34567891',7),
+        ('34567892',8);
 
 INSERT INTO andar(numero_andar,setor,fk_nutricionista_crn,capacidade)
 VALUES  (4,'Internação','34567890',3),
@@ -54,7 +58,7 @@ VALUES  (401,4,'23456789'),
 INSERT INTO paciente(fk_pessoa_cpf,fk_medico_crm,fk_andar_numero_andar,fk_quarto_numero_quarto,urgencia,data_internacao)
 VALUES  ('11122233344','12345678',4,401,'A','2021-07-31'),
         ('11122233355','12345679',4,402,'C','2021-08-01'),
-        ('11122233366','12345679',4,404,'C','2021-08-01'),
+        ('11122233366','12345679',4,403,'C','2021-08-01'),
         ('11122233377','12345678',5,502,'C','2021-08-01'),
         ('11122233388','12345678',5,503,'E','2021-08-02');
 

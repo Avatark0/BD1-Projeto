@@ -4,7 +4,7 @@
 /* Tabelas */
  
 CREATE TABLE andar (
-    numero_andar INTEGER PRIMARY KEY,
+    numero_andar INTEGER UNIQUE PRIMARY KEY,
     setor VARCHAR(12),
     fk_nutricionista_crn VARCHAR(12),
     capacidade INTEGER,
