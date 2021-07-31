@@ -52,11 +52,11 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
         CRNExibirCheckBox = new javax.swing.JCheckBox();
         jCheckBox10 = new javax.swing.JCheckBox();
         jCheckBox12 = new javax.swing.JCheckBox();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        CRMTextField = new javax.swing.JTextField();
+        EspecializacaoTextField = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        CorenTextField = new javax.swing.JTextField();
+        CRNTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -260,6 +260,10 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
                     .addComponent(jCheckBox12)))
         );
 
+        CorenTextField.setEnabled(false);
+
+        CRNTextField.setEnabled(false);
+
         jLabel1.setText("CRM:");
 
         jLabel2.setText("Especialização:");
@@ -289,6 +293,11 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
         jLabel8.setText("Cidade:");
 
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -320,11 +329,11 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
                                         .addGap(2, 2, 2)
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField2))
+                                        .addComponent(EspecializacaoTextField))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(jLabel1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(CRMTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,11 +341,11 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
                                         .addGap(4, 4, 4)
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(CorenTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(CRNTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -362,15 +371,15 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CRMTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CorenTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CRNTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EspecializacaoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel8)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -411,6 +420,10 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
         CRNCheckBox.setSelected(false);
         CorenExibirCheckBox.setSelected(false);
         CRNExibirCheckBox.setSelected(false);
+        CorenTextField.setEnabled(false);
+        CRNTextField.setEnabled(false);
+        CRMTextField.setEnabled(true);
+        EspecializacaoTextField.setEnabled(true);
     }//GEN-LAST:event_botaoMedicoActionPerformed
 
     private void botaoEnfermeiroStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_botaoEnfermeiroStateChanged
@@ -432,6 +445,10 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
         CRMExibirCheckBox.setSelected(false);
         EspecializacaoExibirCheckBox.setSelected(false);
         CRNExibirCheckBox.setSelected(false);
+        CorenTextField.setEnabled(true);
+        CRNTextField.setEnabled(false);
+        CRMTextField.setEnabled(false);
+        EspecializacaoTextField.setEnabled(false);
     }//GEN-LAST:event_botaoEnfermeiroActionPerformed
 
     private void botaoEnfermeiroPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoEnfermeiroPropertyChange
@@ -453,6 +470,10 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
         CRMExibirCheckBox.setSelected(false);
         EspecializacaoExibirCheckBox.setSelected(false);
         CorenExibirCheckBox.setSelected(false);
+        CorenTextField.setEnabled(false);
+        CRNTextField.setEnabled(true);
+        CRMTextField.setEnabled(false);
+        EspecializacaoTextField.setEnabled(false);
     }//GEN-LAST:event_botaoNutricionistaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -463,6 +484,11 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon("src/View/Imagens/searchIcon.png");
         setIconImage(icon.getImage());
     }//GEN-LAST:event_formWindowActivated
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        MostraConsultaFuncionarioView mostraConsultaFuncionario = new MostraConsultaFuncionarioView();
+        mostraConsultaFuncionario.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -502,12 +528,16 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox CRMCheckBox;
     private javax.swing.JCheckBox CRMExibirCheckBox;
+    private javax.swing.JTextField CRMTextField;
     private javax.swing.JCheckBox CRNCheckBox;
     private javax.swing.JCheckBox CRNExibirCheckBox;
+    private javax.swing.JTextField CRNTextField;
     private javax.swing.JCheckBox CorenCheckBox;
     private javax.swing.JCheckBox CorenExibirCheckBox;
+    private javax.swing.JTextField CorenTextField;
     private javax.swing.JCheckBox EspecializacaoCheckBox;
     private javax.swing.JCheckBox EspecializacaoExibirCheckBox;
+    private javax.swing.JTextField EspecializacaoTextField;
     private javax.swing.JRadioButton botaoEnfermeiro;
     private javax.swing.JRadioButton botaoMedico;
     private javax.swing.JRadioButton botaoNutricionista;
@@ -534,11 +564,7 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 }
