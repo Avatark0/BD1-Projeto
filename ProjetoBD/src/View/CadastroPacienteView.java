@@ -93,16 +93,22 @@ public class CadastroPacienteView extends javax.swing.JFrame {
 
         jLabel11.setText("Quartos:");
 
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("402");
 
+        buttonGroup1.add(jRadioButton3);
         jRadioButton3.setText("401");
 
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("403");
 
+        buttonGroup1.add(jRadioButton7);
         jRadioButton7.setText("502");
 
+        buttonGroup1.add(jRadioButton9);
         jRadioButton9.setText("503");
 
+        buttonGroup1.add(jRadioButton4);
         jRadioButton4.setText("501");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
