@@ -125,7 +125,6 @@ public class CadastroFuncionarioView extends javax.swing.JFrame {
 
         textoMedico1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#####"))));
 
-        textoEnfermeiro.setBackground(new java.awt.Color(255, 255, 255));
         textoEnfermeiro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#####"))));
         textoEnfermeiro.setEnabled(false);
         textoEnfermeiro.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +135,6 @@ public class CadastroFuncionarioView extends javax.swing.JFrame {
 
         jLabel10.setText("CRN:");
 
-        textoNutricionista.setBackground(new java.awt.Color(255, 255, 255));
         textoNutricionista.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#####"))));
         textoNutricionista.setEnabled(false);
         textoNutricionista.addActionListener(new java.awt.event.ActionListener() {
@@ -350,7 +348,7 @@ public class CadastroFuncionarioView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
