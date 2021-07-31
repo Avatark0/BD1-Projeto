@@ -12,6 +12,12 @@ Tecnologias utilizadas:
 
 Apache NetBeans, Java, PostgreSQL
 
+Tutorial de instalação e utilização pode ser encontrada em:
+www.GitHubDosTitans.com.br
+
+Duvidas entrar em contato através do e-mail:
+gabriel.gallo@unesp.br
+
                                                                                 
                                                                                 
                                        ,*/(((*.                                 
