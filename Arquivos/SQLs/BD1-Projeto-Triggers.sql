@@ -50,7 +50,7 @@ BEGIN
 END; $BODY$;
 
 CREATE TRIGGER tr_leitos_livres_inc
-    BEFORE DELETE
+    AFTER DELETE
     ON paciente
     FOR EACH ROW
     EXECUTE PROCEDURE tr_func_leitos_livres_inc();

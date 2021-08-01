@@ -69,3 +69,7 @@ ORDER BY codigo_paciente ASC
 
 SELECT * FROM andar
 ORDER BY numero_andar ASC
+
+SELECT fk_andar_numero_andar 
+FROM paciente
+ORDER BY fk_andar_numero_andar ASC
