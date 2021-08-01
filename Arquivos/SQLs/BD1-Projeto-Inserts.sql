@@ -18,7 +18,6 @@ VALUES  ('11122233344','nomePaciente1','998769181','Bauru','rua Batista de Carva
         ('44455566678','nomeNutricionista2','998769252','Bauru','rua Batista de Carvalho','13-24'),
         ('44455566679','nomeNutricionista3','998769253','Bauru','rua Batista de Carvalho','13-25');
         
-
 INSERT INTO funcionario(fk_pessoa_cpf,profissao,salario)
 VALUES  ('22233344455','Médico', 4000.00),
         ('22233344456','Médico', 4000.00),
@@ -30,18 +29,36 @@ VALUES  ('22233344455','Médico', 4000.00),
         ('44455566679','Nutricionista', 3000.00);
 
 INSERT INTO medico(crm,fk_funcionario_codigo_funcionario,especializacao)
-VALUES  ('12345678',1,'urologista'),
-        ('12345679',2,'urologista');
+    SELECT '12345678',codigo_funcionario,'urologista'
+    FROM funcionario WHERE fk_pessoa_cpf = '22233344455';
+
+INSERT INTO medico(crm,fk_funcionario_codigo_funcionario,especializacao)
+    SELECT '12345679',codigo_funcionario,'urologista'
+    FROM funcionario WHERE fk_pessoa_cpf = '22233344456';
 
 INSERT INTO enfermeiro(coren,fk_funcionario_codigo_funcionario)
-VALUES  ('23456789',3),
-        ('23456790',4),
-        ('23456791',5);
+    SELECT '23456789',codigo_funcionario
+    FROM funcionario WHERE fk_pessoa_cpf = '33344455566';
+
+INSERT INTO enfermeiro(coren,fk_funcionario_codigo_funcionario)
+    SELECT '23456790',codigo_funcionario
+    FROM funcionario WHERE fk_pessoa_cpf = '33344455567';
+    
+INSERT INTO enfermeiro(coren,fk_funcionario_codigo_funcionario)
+    SELECT '23456791',codigo_funcionario
+    FROM funcionario WHERE fk_pessoa_cpf = '33344455568';
 
 INSERT INTO nutricionista(crn,fk_funcionario_codigo_funcionario)
-VALUES  ('34567890',6),
-        ('34567891',7),
-        ('34567892',8);
+    SELECT '34567890',codigo_funcionario
+    FROM funcionario WHERE fk_pessoa_cpf = '44455566677';
+
+INSERT INTO nutricionista(crn,fk_funcionario_codigo_funcionario)
+    SELECT '34567891',codigo_funcionario
+    FROM funcionario WHERE fk_pessoa_cpf = '44455566678';
+
+INSERT INTO nutricionista(crn,fk_funcionario_codigo_funcionario)
+    SELECT '34567892',codigo_funcionario
+    FROM funcionario WHERE fk_pessoa_cpf = '44455566679';
 
 INSERT INTO andar(numero_andar,setor,fk_nutricionista_crn,capacidade)
 VALUES  (4,'Internação','34567890',3),
@@ -60,5 +77,4 @@ VALUES  ('11122233344','12345678',4,401,'A','2021-07-31'),
         ('11122233355','12345679',4,402,'C','2021-08-01'),
         ('11122233366','12345679',4,403,'C','2021-08-01'),
         ('11122233377','12345678',5,502,'C','2021-08-01'),
-        ('11122233388','12345678',5,503,'E','2021-08-02');
-
+        ('11122233388','12345678',5,503,'E',CURRENT_DATE);

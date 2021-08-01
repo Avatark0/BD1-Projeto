@@ -18,11 +18,11 @@ CREATE TABLE quarto (
 );
 
 CREATE TABLE pessoa (
-    cpf VARCHAR(12) PRIMARY KEY,
+    cpf VARCHAR(11) PRIMARY KEY,
     nome VARCHAR(100),
     telefone VARCHAR(12),
-    cidade VARCHAR(100),
-    rua VARCHAR(100),
+    cidade VARCHAR(40),
+    rua VARCHAR(40),
     numero_rua VARCHAR(12)
 );
 
@@ -39,14 +39,14 @@ CREATE TABLE paciente (
 CREATE TABLE funcionario (
     codigo_funcionario SERIAL PRIMARY KEY,
     fk_pessoa_cpf VARCHAR(12) UNIQUE,
-    profissao VARCHAR(100),
+    profissao VARCHAR(40),
     salario DECIMAL
 );
 
 CREATE TABLE medico (
     crm VARCHAR(12) PRIMARY KEY,
     fk_funcionario_codigo_funcionario INTEGER UNIQUE,
-    especializacao VARCHAR(100)
+    especializacao VARCHAR(40)
 );
 
 CREATE TABLE enfermeiro (
