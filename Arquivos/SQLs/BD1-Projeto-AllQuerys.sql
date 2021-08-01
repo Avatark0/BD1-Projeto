@@ -19,9 +19,9 @@ CREATE TABLE quarto (
 );
 
 CREATE TABLE pessoa (
-    cpf VARCHAR(11) PRIMARY KEY,
+    cpf VARCHAR(14) PRIMARY KEY,
     nome VARCHAR(100),
-    telefone VARCHAR(12),
+    telefone VARCHAR(16),
     cidade VARCHAR(40),
     rua VARCHAR(40),
     numero_rua VARCHAR(12)
