@@ -17,6 +17,7 @@ public class MostraConsultaFuncionarioView extends javax.swing.JFrame {
     public MostraConsultaFuncionarioView() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -36,6 +37,9 @@ public class MostraConsultaFuncionarioView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -47,6 +51,7 @@ public class MostraConsultaFuncionarioView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Atualizar");
