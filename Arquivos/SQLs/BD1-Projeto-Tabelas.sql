@@ -28,7 +28,7 @@ CREATE TABLE pessoa (
 
 CREATE TABLE paciente (
     codigo_paciente SERIAL PRIMARY KEY,
-    fk_pessoa_cpf VARCHAR(12) UNIQUE,
+    fk_pessoa_cpf VARCHAR(14) UNIQUE,
     fk_medico_crm VARCHAR(12),
     fk_andar_numero_andar INTEGER,
     fk_quarto_numero_quarto INTEGER UNIQUE,
@@ -38,7 +38,7 @@ CREATE TABLE paciente (
 
 CREATE TABLE funcionario (
     codigo_funcionario SERIAL PRIMARY KEY,
-    fk_pessoa_cpf VARCHAR(12) UNIQUE,
+    fk_pessoa_cpf VARCHAR(14) UNIQUE,
     profissao VARCHAR(40),
     salario DECIMAL
 );
