@@ -46,7 +46,7 @@ BEGIN
     SET leitos_livres = leitos_livres + 1
     FROM paciente
     WHERE numero_andar = OLD.fk_andar_numero_andar;
-    RETURN NEW;
+    RETURN NULL;
 END; $BODY$;
 
 CREATE TRIGGER tr_leitos_livres_inc
