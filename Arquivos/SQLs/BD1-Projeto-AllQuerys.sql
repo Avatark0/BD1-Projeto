@@ -194,35 +194,35 @@ VALUES  ('222.333.444-55','Médico', 4000.00),
 
 INSERT INTO medico(crm,fk_funcionario_codigo_funcionario,especializacao)
     SELECT '12345678',codigo_funcionario,'urologista'
-    FROM funcionario WHERE fk_pessoa_cpf = '22233344455';
+    FROM funcionario WHERE fk_pessoa_cpf = '222.333.444-55';
 
 INSERT INTO medico(crm,fk_funcionario_codigo_funcionario,especializacao)
     SELECT '12345679',codigo_funcionario,'urologista'
-    FROM funcionario WHERE fk_pessoa_cpf = '22233344456';
+    FROM funcionario WHERE fk_pessoa_cpf = '222.333.444-56';
 
 INSERT INTO enfermeiro(coren,fk_funcionario_codigo_funcionario)
     SELECT '23456789',codigo_funcionario
-    FROM funcionario WHERE fk_pessoa_cpf = '33344455566';
+    FROM funcionario WHERE fk_pessoa_cpf = '333.444.555-66';
 
 INSERT INTO enfermeiro(coren,fk_funcionario_codigo_funcionario)
     SELECT '23456790',codigo_funcionario
-    FROM funcionario WHERE fk_pessoa_cpf = '33344455567';
+    FROM funcionario WHERE fk_pessoa_cpf = '333.444.555-67';
     
 INSERT INTO enfermeiro(coren,fk_funcionario_codigo_funcionario)
     SELECT '23456791',codigo_funcionario
-    FROM funcionario WHERE fk_pessoa_cpf = '33344455568';
+    FROM funcionario WHERE fk_pessoa_cpf = '333.444.555-68';
 
 INSERT INTO nutricionista(crn,fk_funcionario_codigo_funcionario)
     SELECT '34567890',codigo_funcionario
-    FROM funcionario WHERE fk_pessoa_cpf = '44455566677';
+    FROM funcionario WHERE fk_pessoa_cpf = '444.555.666-77';
 
 INSERT INTO nutricionista(crn,fk_funcionario_codigo_funcionario)
     SELECT '34567891',codigo_funcionario
-    FROM funcionario WHERE fk_pessoa_cpf = '44455566678';
+    FROM funcionario WHERE fk_pessoa_cpf = '444.555.666-78';
 
 INSERT INTO nutricionista(crn,fk_funcionario_codigo_funcionario)
     SELECT '34567892',codigo_funcionario
-    FROM funcionario WHERE fk_pessoa_cpf = '44455566679';
+    FROM funcionario WHERE fk_pessoa_cpf = '444.555.666-79';
 
 INSERT INTO andar(numero_andar,setor,fk_nutricionista_crn,capacidade)
 VALUES  (4,'Internação','34567890',3),
