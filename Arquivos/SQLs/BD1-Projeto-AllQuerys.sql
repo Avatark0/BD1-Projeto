@@ -183,14 +183,14 @@ VALUES  ('111.222.333-44','nomePaciente1','(14) 99876-9181','Bauru','rua Batista
         ('444.555.666-79','nomeNutricionista3','(14) 99876-9253','Bauru','rua Batista de Carvalho','13-25');
         
 INSERT INTO funcionario(fk_pessoa_cpf,profissao,salario)
-VALUES  ('22233344455','Médico', 4000.00),
-        ('22233344456','Médico', 4000.00),
-        ('33344455566','Enfermeiro', 2000.00),
-        ('33344455567','Enfermeiro', 2000.00),
-        ('33344455568','Enfermeiro', 2000.00),
-        ('44455566677','Nutricionista', 3000.00),
-        ('44455566678','Nutricionista', 3000.00),
-        ('44455566679','Nutricionista', 3000.00);
+VALUES  ('222.333.444-55','Médico', 4000.00),
+        ('222.333.444-56','Médico', 4000.00),
+        ('333.444.555-66','Enfermeiro', 2000.00),
+        ('333.444.555-67','Enfermeiro', 2000.00),
+        ('333.444.555-68','Enfermeiro', 2000.00),
+        ('444.555.666-77','Nutricionista', 3000.00),
+        ('444.555.666-78','Nutricionista', 3000.00),
+        ('444.555.666-79','Nutricionista', 3000.00);
 
 INSERT INTO medico(crm,fk_funcionario_codigo_funcionario,especializacao)
     SELECT '12345678',codigo_funcionario,'urologista'
@@ -237,8 +237,8 @@ VALUES  (401,4,'23456789'),
         (503,5,'23456791');
 
 INSERT INTO paciente(fk_pessoa_cpf,fk_medico_crm,fk_andar_numero_andar,fk_quarto_numero_quarto,urgencia,data_internacao)
-VALUES  ('11122233344','12345678',4,401,'A','2021-07-31'),
-        ('11122233355','12345679',4,402,'C','2021-08-01'),
-        ('11122233366','12345679',4,403,'C','2021-08-01'),
-        ('11122233377','12345678',5,502,'C','2021-08-01'),
-        ('11122233388','12345678',5,503,'E',CURRENT_DATE);
+VALUES  ('111.222.333-44','12345678',4,401,'A','2021-07-31'),
+        ('111.222.333-55','12345679',4,402,'C','2021-08-01'),
+        ('111.222.333-66','12345679',4,403,'C','2021-08-01'),
+        ('111.222.333-77','12345678',5,502,'C','2021-08-01'),
+        ('111.222.333-88','12345678',5,503,'E',CURRENT_DATE);
