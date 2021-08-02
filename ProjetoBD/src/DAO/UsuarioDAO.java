@@ -67,7 +67,7 @@ public class UsuarioDAO {
         String sql = "select * from usuario";
         PreparedStatement statement = connection.prepareStatement(sql);
         
-        return pesquisa(statement);
+        return pesquisa(statement); 
     }
 
     private ArrayList<Usuario> pesquisa(PreparedStatement statement) throws SQLException {
