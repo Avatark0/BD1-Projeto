@@ -4,7 +4,7 @@
 /* Tabelas */
  
 CREATE TABLE andar (
-    numero_andar INTEGER PRIMARY KEY,
+    numero_andar INTEGER UNIQUE PRIMARY KEY,
     setor VARCHAR(12),
     fk_nutricionista_crn VARCHAR(12),
     capacidade INTEGER,
@@ -18,17 +18,17 @@ CREATE TABLE quarto (
 );
 
 CREATE TABLE pessoa (
-    cpf VARCHAR(12) PRIMARY KEY,
+    cpf VARCHAR(14) PRIMARY KEY,
     nome VARCHAR(100),
-    telefone VARCHAR(12),
-    cidade VARCHAR(100),
-    rua VARCHAR(100),
+    telefone VARCHAR(16),
+    cidade VARCHAR(40),
+    rua VARCHAR(40),
     numero_rua VARCHAR(12)
 );
 
 CREATE TABLE paciente (
     codigo_paciente SERIAL PRIMARY KEY,
-    fk_pessoa_cpf VARCHAR(12) UNIQUE,
+    fk_pessoa_cpf VARCHAR(14) UNIQUE,
     fk_medico_crm VARCHAR(12),
     fk_andar_numero_andar INTEGER,
     fk_quarto_numero_quarto INTEGER UNIQUE,
@@ -38,15 +38,15 @@ CREATE TABLE paciente (
 
 CREATE TABLE funcionario (
     codigo_funcionario SERIAL PRIMARY KEY,
-    fk_pessoa_cpf VARCHAR(12) UNIQUE,
-    profissao VARCHAR(100),
+    fk_pessoa_cpf VARCHAR(14) UNIQUE,
+    profissao VARCHAR(40),
     salario DECIMAL
 );
 
 CREATE TABLE medico (
     crm VARCHAR(12) PRIMARY KEY,
     fk_funcionario_codigo_funcionario INTEGER UNIQUE,
-    especializacao VARCHAR(100)
+    especializacao VARCHAR(40)
 );
 
 CREATE TABLE enfermeiro (
