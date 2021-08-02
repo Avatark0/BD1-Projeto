@@ -5,7 +5,17 @@
  */
 package View;
 
+import DAO.Conexao;
+import Model.Usuario;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,22 +49,22 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
         EspecializacaoCheckBox = new javax.swing.JCheckBox();
         CorenCheckBox = new javax.swing.JCheckBox();
         CRNCheckBox = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox11 = new javax.swing.JCheckBox();
+        NomeCheckBox = new javax.swing.JCheckBox();
+        TelefoneCheckBox = new javax.swing.JCheckBox();
+        CPFCheckBox = new javax.swing.JCheckBox();
+        CidadeCheckBox = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         CRMExibirCheckBox = new javax.swing.JCheckBox();
         EspecializacaoExibirCheckBox = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        NomeExibirCheckBox = new javax.swing.JCheckBox();
+        CPFExibirCheckBox = new javax.swing.JCheckBox();
         CorenExibirCheckBox = new javax.swing.JCheckBox();
         CRNExibirCheckBox = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
-        jCheckBox12 = new javax.swing.JCheckBox();
+        TelefoneExibirCheckBox = new javax.swing.JCheckBox();
+        CidadeExibirCheckBox = new javax.swing.JCheckBox();
         CRMTextField = new javax.swing.JTextField();
         EspecializacaoTextField = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        NomeTextField = new javax.swing.JTextField();
         CorenTextField = new javax.swing.JTextField();
         CRNTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -62,14 +72,14 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        TelefoneTextField = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        CidadeTextField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        CPFTextField = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -123,22 +133,62 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
         });
 
         CRMCheckBox.setText("CRM");
+        CRMCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CRMCheckBoxActionPerformed(evt);
+            }
+        });
 
         EspecializacaoCheckBox.setText("Especialização");
+        EspecializacaoCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EspecializacaoCheckBoxActionPerformed(evt);
+            }
+        });
 
         CorenCheckBox.setText("Coren");
         CorenCheckBox.setEnabled(false);
+        CorenCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CorenCheckBoxActionPerformed(evt);
+            }
+        });
 
         CRNCheckBox.setText("CRN");
         CRNCheckBox.setEnabled(false);
+        CRNCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CRNCheckBoxActionPerformed(evt);
+            }
+        });
 
-        jCheckBox5.setText("Nome");
+        NomeCheckBox.setText("Nome");
+        NomeCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NomeCheckBoxActionPerformed(evt);
+            }
+        });
 
-        jCheckBox6.setText("Telefone");
+        TelefoneCheckBox.setText("Telefone");
+        TelefoneCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TelefoneCheckBoxActionPerformed(evt);
+            }
+        });
 
-        jCheckBox7.setText("CPF");
+        CPFCheckBox.setText("CPF");
+        CPFCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CPFCheckBoxActionPerformed(evt);
+            }
+        });
 
-        jCheckBox11.setText("Cidade");
+        CidadeCheckBox.setText("Cidade");
+        CidadeCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CidadeCheckBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -157,16 +207,16 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
                         .addComponent(CorenCheckBox))
                     .addComponent(EspecializacaoCheckBox)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jCheckBox5)
+                        .addComponent(NomeCheckBox)
                         .addGap(27, 27, 27)
-                        .addComponent(jCheckBox6)
+                        .addComponent(TelefoneCheckBox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox7)))
+                        .addComponent(CPFCheckBox)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CRNCheckBox)
                     .addComponent(botaoNutricionista)
-                    .addComponent(jCheckBox11))
+                    .addComponent(CidadeCheckBox))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -186,10 +236,10 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
                 .addComponent(EspecializacaoCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox5)
-                    .addComponent(jCheckBox6)
-                    .addComponent(jCheckBox11)
-                    .addComponent(jCheckBox7)))
+                    .addComponent(NomeCheckBox)
+                    .addComponent(TelefoneCheckBox)
+                    .addComponent(CidadeCheckBox)
+                    .addComponent(CPFCheckBox)))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Exibir", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 12))); // NOI18N
@@ -199,9 +249,9 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
 
         EspecializacaoExibirCheckBox.setText("Especialização");
 
-        jCheckBox3.setText("Nome");
+        NomeExibirCheckBox.setText("Nome");
 
-        jCheckBox4.setText("CPF");
+        CPFExibirCheckBox.setText("CPF");
 
         CorenExibirCheckBox.setText("Coren");
         CorenExibirCheckBox.setEnabled(false);
@@ -209,9 +259,9 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
         CRNExibirCheckBox.setText("CRN");
         CRNExibirCheckBox.setEnabled(false);
 
-        jCheckBox10.setText("Telefone");
+        TelefoneExibirCheckBox.setText("Telefone");
 
-        jCheckBox12.setText("Cidade");
+        CidadeExibirCheckBox.setText("Cidade");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -224,14 +274,14 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox4)
-                            .addComponent(jCheckBox3))
+                            .addComponent(CPFExibirCheckBox)
+                            .addComponent(NomeExibirCheckBox))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jCheckBox12)
+                                .addComponent(CidadeExibirCheckBox)
                                 .addGap(8, 8, 8))
-                            .addComponent(jCheckBox10, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(TelefoneExibirCheckBox, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(CRMExibirCheckBox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -252,13 +302,19 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
                 .addComponent(EspecializacaoExibirCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox10))
+                    .addComponent(NomeExibirCheckBox)
+                    .addComponent(TelefoneExibirCheckBox))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox4)
-                    .addComponent(jCheckBox12)))
+                    .addComponent(CPFExibirCheckBox)
+                    .addComponent(CidadeExibirCheckBox)))
         );
+
+        CRMTextField.setEnabled(false);
+
+        EspecializacaoTextField.setEnabled(false);
+
+        NomeTextField.setEnabled(false);
 
         CorenTextField.setEnabled(false);
 
@@ -275,22 +331,19 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
         jLabel5.setText("CRN:");
 
         try {
-            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+            TelefoneTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        TelefoneTextField.setEnabled(false);
 
         jLabel6.setText("Telefone:");
-
-        try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 
         jLabel7.setText("CPF:");
 
         jLabel8.setText("Cidade:");
+
+        CidadeTextField.setEnabled(false);
 
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -306,6 +359,13 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
             }
         });
 
+        try {
+            CPFTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        CPFTextField.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -313,7 +373,7 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NomeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel3)
                         .addGroup(layout.createSequentialGroup()
@@ -321,7 +381,7 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel6)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TelefoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(jLabel7))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -334,25 +394,23 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
                                         .addComponent(jLabel1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(CRMTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(4, 4, 4)
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(CorenTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(CRNTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel8)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(CidadeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(4, 4, 4)
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(CorenTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(CRNTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(37, 37, 37)
+                                    .addComponent(CPFTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -382,17 +440,17 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
                     .addComponent(EspecializacaoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CidadeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NomeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TelefoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CPFTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -486,9 +544,244 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        MostraConsultaFuncionarioView mostraConsultaFuncionario = new MostraConsultaFuncionarioView();
-        mostraConsultaFuncionario.setVisible(true);
+        ResultSet rs = null;
+        String colunas = "";
+        if (CPFExibirCheckBox.isSelected()) {
+            colunas = colunas + "cpf as CPF,";
+        }
+        if (NomeExibirCheckBox.isSelected()) {
+            colunas = colunas + "nome as Nome,";
+        }
+        if (CidadeExibirCheckBox.isSelected()) {
+            colunas = colunas + "cidade as Cidade,";
+        }
+        if (TelefoneExibirCheckBox.isSelected()) {
+            colunas = colunas + "telefone as Telefone,";
+        }
+        /* if(CRMCheckBox.isSelected())
+            colunas = colunas + "crm as CRM,";
+        if(EspecializacaoCheckBox.isSelected())
+            colunas = colunas + "especializacao as Especialização,";
+        if(CorenCheckBox.isSelected())
+            colunas = colunas + "coren as Coren,";
+        if(CRNCheckBox.isSelected())
+            colunas = colunas + "crn as CRN,";*/
+        if(colunas.length()==0)
+            colunas = colunas + "cpf as CPF,";
+        colunas = colunas.substring(0, colunas.length() - 1); // elimina a ultima virgula
+        String sql = "SELECT " + colunas + " FROM pessoa ";
+        String busca = "";
+
+        if (CPFCheckBox.isSelected() || NomeCheckBox.isSelected() || CidadeCheckBox.isSelected() || TelefoneCheckBox.isSelected()
+                || EspecializacaoCheckBox.isSelected() || CRMCheckBox.isSelected() || CorenCheckBox.isSelected() || CRNCheckBox.isSelected()) {
+            sql = sql + "WHERE";
+            if (CPFCheckBox.isSelected()) {
+                if (CPFTextField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                busca = busca + " cpf = '" + CPFTextField.getText() + "' and";
+            }
+            if (NomeCheckBox.isSelected()) {
+                if (NomeTextField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                busca = busca + " nome = '" + NomeTextField.getText() + "' and";
+            }
+            if (CidadeCheckBox.isSelected()) {
+                if (CidadeTextField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                busca = busca + " cidade = '" + CidadeTextField.getText() + "' and";
+            }
+            if (TelefoneCheckBox.isSelected()) {
+                if (TelefoneTextField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                busca = busca + " telefone = '" + TelefoneTextField.getText() + "' and";
+            }
+            if (CRMCheckBox.isSelected()) {
+                if (CRMTextField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                busca = busca + " CRM = '" + CRMTextField.getText() + "' and";
+            }
+            if (EspecializacaoCheckBox.isSelected()) {
+                if (EspecializacaoTextField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                busca = busca + " especializacao = '" + EspecializacaoTextField.getText() + "' and";
+            }
+            if (CorenCheckBox.isSelected()) {
+                if (CorenTextField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                busca = busca + " coren = '" + CorenTextField.getText() + "' and";
+            }
+            if (CRNCheckBox.isSelected()) {
+                if (CRNTextField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                busca = busca + " crn = '" + CRNTextField.getText() + "' and";
+            }
+            busca = busca.substring(0, busca.length() - 3); // remove ultimo and
+            sql = sql + busca;
+        }
+        try {
+            Connection conexao = new Conexao().getConnection();
+            PreparedStatement statement = conexao.prepareStatement(sql);
+            montaArrayList(statement);
+            /* statement.execute();
+            ResultSet resultSet = statement.getResultSet();
+            while (resultSet.next()) {
+                String cidade = resultSet.getString("cidade");
+                
+                System.out.println(cidade);
+            }*/
+
+            statement.close();
+            JOptionPane.showMessageDialog(null, "Consulta realizada com sucesso!", "Consulta", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroFuncionarioView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Não foi possível  realizar a consulta!\n" + ex.toString(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+        //MostraConsultaFuncionarioView mostraConsultaFuncionario = new MostraConsultaFuncionarioView();
+        // mostraConsultaFuncionario.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private ArrayList<ArrayList<String>> montaArrayList(PreparedStatement statement) throws SQLException {
+        ArrayList<ArrayList<String>> arrayList = new ArrayList<ArrayList<String>>();
+        statement.execute();
+        ResultSet resultSet = statement.getResultSet();
+        ArrayList<String> pessoaComDadosDoBanco = new ArrayList<>();
+        String cpf = "";
+        String nome = "";
+        String telefone = "";
+        String cidade = "";
+        String CRM = "";
+        String CRN = "";
+        String Coren = "";
+        String Especializacao = "";
+        
+        while (resultSet.next()) {
+            if (CPFCheckBox.isSelected()) {
+                cpf = resultSet.getString("cpf");
+                pessoaComDadosDoBanco.add(cpf);  
+            }
+            if (NomeCheckBox.isSelected()) {
+                nome = resultSet.getString("nome");
+                pessoaComDadosDoBanco.add(nome);
+            }
+            if (TelefoneCheckBox.isSelected()) {
+                telefone = resultSet.getString("telefone");
+                pessoaComDadosDoBanco.add(telefone);
+            }
+            if (CidadeCheckBox.isSelected()) {
+                cidade = resultSet.getString("cidade");
+                pessoaComDadosDoBanco.add(cidade);
+            }
+            if (CRMCheckBox.isSelected()) {
+                CRM = resultSet.getString("crm");
+                pessoaComDadosDoBanco.add(CRM);
+            }
+            if (CorenCheckBox.isSelected()) {
+                Coren = resultSet.getString("coren");
+                pessoaComDadosDoBanco.add(Coren);
+            }
+            if (EspecializacaoCheckBox.isSelected()) {
+                Especializacao = resultSet.getString("especializacao");
+                pessoaComDadosDoBanco.add(Especializacao);
+            }
+            if (CRNCheckBox.isSelected()) {
+                CRN = resultSet.getString("crn");
+                pessoaComDadosDoBanco.add(CRN);
+            }
+            
+            for(int i = 0; i < pessoaComDadosDoBanco.size(); i++){
+                System.out.println(pessoaComDadosDoBanco.get(i));
+            }
+            /*
+            System.out.println(pessoaComDadosDoBanco.get(0));
+
+            
+            System.out.println("nomeadicionado");
+            System.out.println(pessoaComDadosDoBanco.get(1));
+
+            
+            System.out.println("telefone adicionado");
+            System.out.println(pessoaComDadosDoBanco.get(2));
+
+            
+            System.out.println("cidade adicionada");
+            System.out.println(pessoaComDadosDoBanco.get(3));
+            */
+        }
+        return arrayList;
+    }
+
+    private void CRMCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CRMCheckBoxActionPerformed
+        if (CRMCheckBox.isSelected())
+            CRMTextField.setEnabled(true);
+        else
+            CRMTextField.setEnabled(false);
+    }//GEN-LAST:event_CRMCheckBoxActionPerformed
+
+    private void EspecializacaoCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EspecializacaoCheckBoxActionPerformed
+        if (EspecializacaoCheckBox.isSelected())
+            EspecializacaoTextField.setEnabled(true);
+        else
+            EspecializacaoTextField.setEnabled(false);
+    }//GEN-LAST:event_EspecializacaoCheckBoxActionPerformed
+
+    private void NomeCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomeCheckBoxActionPerformed
+        if (NomeCheckBox.isSelected())
+            NomeTextField.setEnabled(true);
+        else
+            NomeTextField.setEnabled(false);
+    }//GEN-LAST:event_NomeCheckBoxActionPerformed
+
+    private void TelefoneCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelefoneCheckBoxActionPerformed
+        if (TelefoneCheckBox.isSelected())
+            TelefoneTextField.setEnabled(true);
+        else
+            TelefoneTextField.setEnabled(false);
+    }//GEN-LAST:event_TelefoneCheckBoxActionPerformed
+
+    private void CorenCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorenCheckBoxActionPerformed
+        if (CorenCheckBox.isSelected())
+            CorenTextField.setEnabled(true);
+        else
+            CorenTextField.setEnabled(false);
+    }//GEN-LAST:event_CorenCheckBoxActionPerformed
+
+    private void CRNCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CRNCheckBoxActionPerformed
+        if (CRNCheckBox.isSelected())
+            CRNTextField.setEnabled(true);
+        else
+            CRNTextField.setEnabled(false);
+    }//GEN-LAST:event_CRNCheckBoxActionPerformed
+
+    private void CidadeCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CidadeCheckBoxActionPerformed
+        if (CidadeCheckBox.isSelected())
+            CidadeTextField.setEnabled(true);
+        else
+            CidadeTextField.setEnabled(false);
+    }//GEN-LAST:event_CidadeCheckBoxActionPerformed
+
+    private void CPFCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPFCheckBoxActionPerformed
+        if (CPFCheckBox.isSelected())
+            CPFTextField.setEnabled(true);
+        else
+            CPFTextField.setEnabled(false);
+    }//GEN-LAST:event_CPFCheckBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -526,34 +819,36 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox CPFCheckBox;
+    private javax.swing.JCheckBox CPFExibirCheckBox;
+    private javax.swing.JFormattedTextField CPFTextField;
     private javax.swing.JCheckBox CRMCheckBox;
     private javax.swing.JCheckBox CRMExibirCheckBox;
     private javax.swing.JTextField CRMTextField;
     private javax.swing.JCheckBox CRNCheckBox;
     private javax.swing.JCheckBox CRNExibirCheckBox;
     private javax.swing.JTextField CRNTextField;
+    private javax.swing.JCheckBox CidadeCheckBox;
+    private javax.swing.JCheckBox CidadeExibirCheckBox;
+    private javax.swing.JTextField CidadeTextField;
     private javax.swing.JCheckBox CorenCheckBox;
     private javax.swing.JCheckBox CorenExibirCheckBox;
     private javax.swing.JTextField CorenTextField;
     private javax.swing.JCheckBox EspecializacaoCheckBox;
     private javax.swing.JCheckBox EspecializacaoExibirCheckBox;
     private javax.swing.JTextField EspecializacaoTextField;
+    private javax.swing.JCheckBox NomeCheckBox;
+    private javax.swing.JCheckBox NomeExibirCheckBox;
+    private javax.swing.JTextField NomeTextField;
+    private javax.swing.JCheckBox TelefoneCheckBox;
+    private javax.swing.JCheckBox TelefoneExibirCheckBox;
+    private javax.swing.JFormattedTextField TelefoneTextField;
     private javax.swing.JRadioButton botaoEnfermeiro;
     private javax.swing.JRadioButton botaoMedico;
     private javax.swing.JRadioButton botaoNutricionista;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox12;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -564,7 +859,5 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }

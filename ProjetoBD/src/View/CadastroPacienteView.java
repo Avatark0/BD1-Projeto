@@ -5,7 +5,16 @@
  */
 package View;
 
+import DAO.Conexao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,6 +28,11 @@ public class CadastroPacienteView extends javax.swing.JFrame {
     public CadastroPacienteView() {
         initComponents();
         this.setLocationRelativeTo(null);
+        try {
+            pesquisa();
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultaFuncionarioView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -33,33 +47,31 @@ public class CadastroPacienteView extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        urgenciaComboBox = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        medicoTextField = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
-        jRadioButton9 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        quarto402Button = new javax.swing.JRadioButton();
+        quarto401Button = new javax.swing.JRadioButton();
+        quarto403Button = new javax.swing.JRadioButton();
+        quarto502Button = new javax.swing.JRadioButton();
+        quarto503Button = new javax.swing.JRadioButton();
+        quarto501Button = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        cpfTextField = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jTextField2 = new javax.swing.JTextField();
+        cidadeTextField = new javax.swing.JTextField();
+        ruaTextField = new javax.swing.JTextField();
+        numeroRuaTextField = new javax.swing.JTextField();
+        telefoneTextField = new javax.swing.JFormattedTextField();
+        nomeTextField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        cadastrarButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -74,42 +86,64 @@ public class CadastroPacienteView extends javax.swing.JFrame {
 
         jLabel2.setText("Urgência:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Emergência", "Muito Urgente", "Urgente", "Pouco Urgente", "Não Urgente" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        urgenciaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Emergência", "Muito Urgente", "Urgente", "Pouco Urgente", "Não Urgente" }));
+        urgenciaComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                urgenciaComboBoxActionPerformed(evt);
             }
         });
 
-        jLabel10.setText("Data de Internação:");
-
-        try {
-            jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jLabel1.setText("Médico:");
+        jLabel1.setText("Médico (CRM):");
 
         jLabel11.setText("Quartos:");
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("402");
+        buttonGroup1.add(quarto402Button);
+        quarto402Button.setText("402");
+        quarto402Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quarto402ButtonActionPerformed(evt);
+            }
+        });
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("401");
+        buttonGroup1.add(quarto401Button);
+        quarto401Button.setText("401");
+        quarto401Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quarto401ButtonActionPerformed(evt);
+            }
+        });
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("403");
+        buttonGroup1.add(quarto403Button);
+        quarto403Button.setText("403");
+        quarto403Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quarto403ButtonActionPerformed(evt);
+            }
+        });
 
-        buttonGroup1.add(jRadioButton7);
-        jRadioButton7.setText("502");
+        buttonGroup1.add(quarto502Button);
+        quarto502Button.setText("502");
+        quarto502Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quarto502ButtonActionPerformed(evt);
+            }
+        });
 
-        buttonGroup1.add(jRadioButton9);
-        jRadioButton9.setText("503");
+        buttonGroup1.add(quarto503Button);
+        quarto503Button.setText("503");
+        quarto503Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quarto503ButtonActionPerformed(evt);
+            }
+        });
 
-        buttonGroup1.add(jRadioButton4);
-        jRadioButton4.setText("501");
+        buttonGroup1.add(quarto501Button);
+        quarto501Button.setText("501");
+        quarto501Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quarto501ButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -119,29 +153,26 @@ public class CadastroPacienteView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(urgenciaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4))
+                    .addComponent(quarto401Button)
+                    .addComponent(quarto501Button))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jFormattedTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton7))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(quarto402Button)
+                            .addComponent(quarto502Button)
+                            .addComponent(jLabel1))
+                        .addGap(46, 46, 46)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(15, 15, 15)
+                                .addGap(85, 85, 85)
                                 .addComponent(jLabel9))
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton9))
-                        .addGap(0, 55, Short.MAX_VALUE)))
+                            .addComponent(quarto403Button)
+                            .addComponent(quarto503Button))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(medicoTextField))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -150,39 +181,34 @@ public class CadastroPacienteView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
+                            .addComponent(jLabel2)
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(urgenciaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(medicoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(40, 40, 40)))
-                .addGap(18, 18, 18)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton2))
+                    .addComponent(quarto402Button)
+                    .addComponent(quarto401Button)
+                    .addComponent(quarto403Button))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton7)
-                    .addComponent(jRadioButton9)
-                    .addComponent(jRadioButton4))
+                    .addComponent(quarto502Button)
+                    .addComponent(quarto503Button)
+                    .addComponent(quarto501Button))
                 .addContainerGap())
         );
 
         jLabel3.setText("Telefone:");
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            cpfTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -195,9 +221,9 @@ public class CadastroPacienteView extends javax.swing.JFrame {
 
         jLabel6.setText("Nº:");
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        ruaTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                ruaTextFieldActionPerformed(evt);
             }
         });
 
@@ -213,30 +239,30 @@ public class CadastroPacienteView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(numeroRuaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTextField4)
-                    .addComponent(jTextField5)))
+                    .addComponent(cidadeTextField)
+                    .addComponent(ruaTextField)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cidadeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ruaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(numeroRuaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3))
         );
 
         try {
-            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+            telefoneTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -245,9 +271,19 @@ public class CadastroPacienteView extends javax.swing.JFrame {
 
         jLabel8.setText("Nome:");
 
-        jButton1.setText("Cadastrar");
+        cadastrarButton.setText("Cadastrar");
+        cadastrarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarButtonActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -261,17 +297,17 @@ public class CadastroPacienteView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(telefoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextField1))
+                        .addComponent(cpfTextField))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2))
+                        .addComponent(nomeTextField))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cadastrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -283,19 +319,19 @@ public class CadastroPacienteView extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nomeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(telefoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cpfTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(cadastrarButton)
                     .addComponent(jButton2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -303,18 +339,156 @@ public class CadastroPacienteView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void urgenciaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_urgenciaComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_urgenciaComboBoxActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void ruaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ruaTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_ruaTextFieldActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         ImageIcon icon = new ImageIcon("src/View/Imagens/searchIcon.png");
         setIconImage(icon.getImage());
     }//GEN-LAST:event_formWindowActivated
+
+    private void cadastrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarButtonActionPerformed
+        String insertPessoa = "INSERT INTO pessoa(cpf,nome,telefone,cidade,rua,numero_rua) VALUES"
+                + " ('" + cpfTextField.getText() + "','" + nomeTextField.getText() + "','"
+                + telefoneTextField.getText() + "','" + cidadeTextField.getText() + "','"
+                + ruaTextField.getText() + "'," + numeroRuaTextField.getText() + ");";
+        String insertPaciente = "INSERT INTO paciente"
+                + "(fk_pessoa_cpf,fk_medico_crm,fk_andar_numero_andar,fk_quarto_numero_quarto,urgencia,data_internacao) VALUES"
+                + " ('" + cpfTextField.getText() + "','" + medicoTextField.getText() + "'," + getAndar() + "," + getQuarto()
+                + ",'" + getUrgencia() + "', current_date);";
+
+        try {
+            //  System.out.println("inicio coenxao");
+            //  System.out.println("" + CPFTextField.getText() + "");
+            Connection conexao = new Conexao().getConnection();
+            PreparedStatement statementPessoa = conexao.prepareStatement(insertPessoa);
+            PreparedStatement statementPaciente = conexao.prepareStatement(insertPaciente);
+            statementPessoa.execute();
+            statementPaciente.execute();
+            statementPessoa.close();
+            statementPaciente.close();
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroFuncionarioView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Não foi possível  realizar a inserção!\n" + ex.toString(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_cadastrarButtonActionPerformed
+
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void quarto401ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quarto401ButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quarto401ButtonActionPerformed
+
+    private void quarto402ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quarto402ButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quarto402ButtonActionPerformed
+
+    private void quarto403ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quarto403ButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quarto403ButtonActionPerformed
+
+    private void quarto501ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quarto501ButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quarto501ButtonActionPerformed
+
+    private void quarto502ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quarto502ButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quarto502ButtonActionPerformed
+
+    private void quarto503ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quarto503ButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quarto503ButtonActionPerformed
+
+    private int getAndar() {
+        int andar = 0;
+        if (quarto401Button.isSelected() || quarto402Button.isSelected() || quarto403Button.isSelected()) {
+            andar = 4;
+        } else if (quarto501Button.isSelected() || quarto502Button.isSelected() || quarto503Button.isSelected()) {
+            andar = 5;
+        }
+        return andar;
+    }
+
+    private int getQuarto() {
+        int quarto = 0;
+        if (quarto401Button.isSelected()) {
+            quarto = 401;
+        }
+        if (quarto402Button.isSelected()) {
+            quarto = 402;
+        }
+        if (quarto403Button.isSelected()) {
+            quarto = 403;
+        }
+        if (quarto501Button.isSelected()) {
+            quarto = 501;
+        }
+        if (quarto502Button.isSelected()) {
+            quarto = 502;
+        }
+        if (quarto503Button.isSelected()) {
+            quarto = 503;
+        }
+        return quarto;
+    }
+
+    private char getUrgencia() {
+        char urgencia = '0';
+        if (urgenciaComboBox.getSelectedIndex() == 0) {
+            urgencia = 'E';
+        }
+        if (urgenciaComboBox.getSelectedIndex() == 1) {
+            urgencia = 'D';
+        }
+        if (urgenciaComboBox.getSelectedIndex() == 2) {
+            urgencia = 'C';
+        }
+        if (urgenciaComboBox.getSelectedIndex() == 3) {
+            urgencia = 'B';
+        }
+        if (urgenciaComboBox.getSelectedIndex() == 4) {
+            urgencia = 'A';
+        }
+        return urgencia;
+    }
+
+    private void pesquisa() throws SQLException {
+        String sql = "SELECT fk_quarto_numero_quarto FROM paciente ORDER BY fk_quarto_numero_quarto ASC";
+        Connection conexao = new Conexao().getConnection();
+        PreparedStatement statementPessoa = conexao.prepareStatement(sql);
+        // ArrayList<Integer> quartos = new ArrayList<Integer>();
+        statementPessoa.execute();
+        ResultSet resultSet = statementPessoa.getResultSet();
+        while (resultSet.next()) {
+            if (resultSet.getInt("fk_quarto_numero_quarto") == 401) {
+                quarto401Button.setEnabled(false);
+            }
+            if (resultSet.getInt("fk_quarto_numero_quarto") == 402) {
+                quarto402Button.setEnabled(false);
+            }
+            if (resultSet.getInt("fk_quarto_numero_quarto") == 403) {
+                quarto403Button.setEnabled(false);
+            }
+            if (resultSet.getInt("fk_quarto_numero_quarto") == 501) {
+                quarto501Button.setEnabled(false);
+            }
+            if (resultSet.getInt("fk_quarto_numero_quarto") == 502) {
+                quarto502Button.setEnabled(false);
+            }
+            if (resultSet.getInt("fk_quarto_numero_quarto") == 503) {
+                quarto503Button.setEnabled(false);
+            }
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -353,14 +527,11 @@ public class CadastroPacienteView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton cadastrarButton;
+    private javax.swing.JTextField cidadeTextField;
+    private javax.swing.JFormattedTextField cpfTextField;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -372,16 +543,17 @@ public class CadastroPacienteView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField medicoTextField;
+    private javax.swing.JTextField nomeTextField;
+    private javax.swing.JTextField numeroRuaTextField;
+    private javax.swing.JRadioButton quarto401Button;
+    private javax.swing.JRadioButton quarto402Button;
+    private javax.swing.JRadioButton quarto403Button;
+    private javax.swing.JRadioButton quarto501Button;
+    private javax.swing.JRadioButton quarto502Button;
+    private javax.swing.JRadioButton quarto503Button;
+    private javax.swing.JTextField ruaTextField;
+    private javax.swing.JFormattedTextField telefoneTextField;
+    private javax.swing.JComboBox<String> urgenciaComboBox;
     // End of variables declaration//GEN-END:variables
 }
