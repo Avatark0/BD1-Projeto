@@ -705,9 +705,14 @@ public class ConsultaFuncionarioView extends javax.swing.JFrame {
                 pessoaComDadosDoBanco.add(CRN);
             }
             
+            String dadosPrint = "";
+            
             for(int i = 0; i < pessoaComDadosDoBanco.size(); i++){
-                System.out.println(pessoaComDadosDoBanco.get(i));
+                dadosPrint = dadosPrint + pessoaComDadosDoBanco.get(i) + "\n";
             }
+            
+            JOptionPane.showMessageDialog(null, dadosPrint );
+            //JOptionPane.showMessageDialog(null, dadosPrint, "Consulta", JOptionPane.INFORMATION_MESSAGE);
             /*
             System.out.println(pessoaComDadosDoBanco.get(0));
 
