@@ -168,19 +168,19 @@ CREATE TRIGGER tr_leitos_livres_inc
 
 --Inserts
 INSERT INTO pessoa(cpf,nome,telefone,cidade,rua,numero_rua)
-VALUES  ('11122233344','nomePaciente1','998769181','Bauru','rua Batista de Carvalho','10-20'),
-        ('11122233355','nomePaciente2','998769182','Bauru','rua Batista de Carvalho','10-21'),
-        ('11122233366','nomePaciente3','998769183','Bauru','rua Batista de Carvalho','10-22'),
-        ('11122233377','nomePaciente4','998769184','Bauru','rua Batista de Carvalho','10-23'),
-        ('11122233388','nomePaciente5','998769185','Bauru','rua Batista de Carvalho','10-24'),
-        ('22233344455','nomeMedico1','998769271','Bauru','rua Batista de Carvalho','11-21'),
-        ('22233344456','nomeMedico2','998769272','Bauru','rua Batista de Carvalho','11-22'),
-        ('33344455566','nomeEnfermeiro1','998769261','Bauru','rua Batista de Carvalho','12-22'),
-        ('33344455567','nomeEnfermeiro2','998769262','Bauru','rua Batista de Carvalho','12-23'),
-        ('33344455568','nomeEnfermeiro3','998769263','Bauru','rua Batista de Carvalho','12-24'),
-        ('44455566677','nomeNutricionista1','998769251','Bauru','rua Batista de Carvalho','13-23'),
-        ('44455566678','nomeNutricionista2','998769252','Bauru','rua Batista de Carvalho','13-24'),
-        ('44455566679','nomeNutricionista3','998769253','Bauru','rua Batista de Carvalho','13-25');
+VALUES  ('111.222.333-44','nomePaciente1','(14) 99876-9181','Bauru','rua Batista de Carvalho','10-20'),
+        ('111.222.333-55','nomePaciente2','(14) 99876-9182','Bauru','rua Batista de Carvalho','10-21'),
+        ('111.222.333-66','nomePaciente3','(14) 99876-9183','Bauru','rua Batista de Carvalho','10-22'),
+        ('111.222.333-77','nomePaciente4','(14) 99876-9184','Bauru','rua Batista de Carvalho','10-23'),
+        ('111.222.333-88','nomePaciente5','(14) 99876-9185','Bauru','rua Batista de Carvalho','10-24'),
+        ('222.333.444-55','nomeMedico1','(14) 99876-9271','Bauru','rua Batista de Carvalho','11-21'),
+        ('222.333.444-56','nomeMedico2','(14) 99876-9272','Bauru','rua Batista de Carvalho','11-22'),
+        ('333.444.555-66','nomeEnfermeiro1','(14) 99876-9261','Bauru','rua Batista de Carvalho','12-22'),
+        ('333.444.555-67','nomeEnfermeiro2','(14) 99876-9262','Bauru','rua Batista de Carvalho','12-23'),
+        ('333.444.555-68','nomeEnfermeiro3','(14) 99876-9263','Bauru','rua Batista de Carvalho','12-24'),
+        ('444.555.666-77','nomeNutricionista1','(14) 99876-9251','Bauru','rua Batista de Carvalho','13-23'),
+        ('444.555.666-78','nomeNutricionista2','(14) 99876-9252','Bauru','rua Batista de Carvalho','13-24'),
+        ('444.555.666-79','nomeNutricionista3','(14) 99876-9253','Bauru','rua Batista de Carvalho','13-25');
         
 INSERT INTO funcionario(fk_pessoa_cpf,profissao,salario)
 VALUES  ('22233344455','Médico', 4000.00),
